@@ -47,12 +47,12 @@ export default function HomePage() {
         </form>
         <div className="section">
           {
-            mediaSearchResults.results.map(element => (
-              <ul key={element.id} className="list-unstyled">
-                <li>{element.title || element.name}</li>
-                <li>{element.original_title || element.original_name}</li>
-                <li><span className={`fi fi-${handleCoutryCode(element.original_language)}`}></span></li>
-                <li>{element.vote_average}</li>
+            mediaSearchResults.results.map(({id, name, original_language, original_name, title, original_title, vote_average}) => (
+              <ul key={id} className="list-unstyled">
+                <li>{title || name}</li>
+                <li>{original_title || original_name}</li>
+                <li><span className={`fi fi-${handleCoutryCode(original_language)}`}></span></li>
+                <li>{vote_average}</li>
               </ul>
             ))
           }
