@@ -10,13 +10,14 @@ export default function HomePage() {
 
   function handleSearch(e) {
     e.preventDefault()
-    if (tempSearchMovieTitle.length >= 3) {
-      fetch(`${apiUrl}3/search/${mediaType}?api_key=${envKey}&query=${tempSearchMovieTitle}`)
+    if (tempSearchMovieTitle.length > 1) {
+      fetch(`${apiUrl}3/search/${mediaType}?api_key=${envKey}&query=${tempSearchMovieTitle}&page=${mediaSearchResults.page}`)
         .then(response => response.json())
         .then(data => {
           setMediaSearchResults({
             'page' : data.page,
-            'results': data.results})
+            'results': data.results
+          })
           console.log(mediaSearchResults)
         })
     }
@@ -35,7 +36,7 @@ export default function HomePage() {
               <ul key={element.id} className="list-unstyled">
                 <li>{element.title}</li>
                 <li>{element.original_title}</li>
-                <li>{element.original_language}</li>
+                <li><span className={`fi fi-${element.original_language}`}></span>{element.original_language.toUpperCase()}</li>
                 <li>{element.vote_average.toFixed(2)}</li>
               </ul>
             ))
