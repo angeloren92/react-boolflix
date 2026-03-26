@@ -18,8 +18,20 @@ export default function HomePage() {
             'page' : data.page,
             'results': data.results
           })
+          
           console.log(mediaSearchResults)
         })
+    }
+  }
+
+  function handleCoutryCode(language) {
+    switch (language) {
+      case 'en' : return 'us';
+      case 'ja' : return 'jp';
+      case 'zh' : return 'cn';
+      case 'ko' : return 'kr';
+      case 'cs' : return 'cz';
+      default : return language ;
     }
   }
 
@@ -36,7 +48,7 @@ export default function HomePage() {
               <ul key={element.id} className="list-unstyled">
                 <li>{element.title}</li>
                 <li>{element.original_title}</li>
-                <li><span className={`fi fi-${element.original_language}`}></span>{element.original_language.toUpperCase()}</li>
+                <li><span className={`fi fi-${handleCoutryCode(element.original_language)}`}></span>{element.original_language.toUpperCase()}</li>
                 <li>{element.vote_average.toFixed(2)}</li>
               </ul>
             ))
