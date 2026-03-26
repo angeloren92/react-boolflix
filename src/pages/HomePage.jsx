@@ -6,22 +6,20 @@ export default function HomePage() {
   const { envKey, apiUrl } = useContext(GlobalContext)
   const [tempSearchMovieTitle, setTempSearchMovieTitle] = useState('')
   const [mediaType, setMediaType] = useState('movie')
-  const [mediaSearchResults, setMediaSearchResults] = useState([])
-  console.log(mediaSearchResults)
+  const [mediaSearchResults, setMediaSearchResults] = useState({page: 1, results: []})
 
-  useEffect(() => {
+  function handleSearch(e) {
+    e.preventDefault()
     if (tempSearchMovieTitle.length >= 3) {
       fetch(`${apiUrl}3/search/${mediaType}?api_key=${envKey}&query=${tempSearchMovieTitle}`)
         .then(response => response.json())
         .then(data => {
-          setMediaSearchResults(data.results)
+          setMediaSearchResults({
+            'page' : data.page,
+            'results': data.results})
+          console.log(mediaSearchResults)
         })
     }
-  }, [tempSearchMovieTitle])
-
-  function handleSearch(e) {
-    e.preventDefault()
-
   }
 
   return (
@@ -33,12 +31,12 @@ export default function HomePage() {
         </form>
         <div className="section">
           {
-            mediaSearchResults.map(element => (
+            mediaSearchResults.results.map(element => (
               <ul key={element.id} className="list-unstyled">
                 <li>{element.title}</li>
                 <li>{element.original_title}</li>
                 <li>{element.original_language}</li>
-                <li>{element.vote_average}</li>
+                <li>{element.vote_average.toFixed(2)}</li>
               </ul>
             ))
           }
