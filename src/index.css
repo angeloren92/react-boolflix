@@ -17,6 +17,11 @@
     border: 0;
 }
 
+.card-body {
+    overflow: auto;
+    scrollbar-width: none;
+}
+
 .card-text {
     top: 5%;
     left: 0;

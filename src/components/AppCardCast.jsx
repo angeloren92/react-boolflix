@@ -23,7 +23,8 @@ export default function AppCardCast({ id, media_type, genre_ids }) {
 
 
     return (
-        <>
+        <figure>
+            <span><strong>Cast: </strong></span>
             <ul>
                 {
                     cast.map(element => (
@@ -31,6 +32,6 @@ export default function AppCardCast({ id, media_type, genre_ids }) {
                     ))
                 }
             </ul>
-        </>
+        </figure>
     )
 }
