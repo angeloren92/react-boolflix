@@ -17,7 +17,9 @@ export default function HomePage() {
       .then(data => {
         setMediaSearchResults({
           'page': data.page,
-          'results': data.results
+          'results': data.results.filter(element => element.media_type !== 'person'),
+          'total_pages' : data.total_pages,
+          'total_results': data.total_results
         })
       })
   }
