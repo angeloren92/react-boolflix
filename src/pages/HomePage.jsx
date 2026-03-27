@@ -1,5 +1,6 @@
 import { GlobalContext } from "../context/GlobalContext"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
+import AppCards from "../components/AppCards"
 
 export default function HomePage() {
 
@@ -7,9 +8,6 @@ export default function HomePage() {
   const [tempSearchMovieTitle, setTempSearchMovieTitle] = useState('')
   const [searchMediaType, setSearchMediaType] = useState('multi')
   const [mediaSearchResults, setMediaSearchResults] = useState({ page: 1, results: [] })
-  const imgPlaceholder = 'https://placehold.co/500x700?text=IMG+NOT+FOUND'
-
-  console.log(mediaSearchResults)
 
   function handleSearch(e) {
     e.preventDefault()
@@ -25,16 +23,7 @@ export default function HomePage() {
       })
   }
 
-  function handleCoutryCode(language) {
-    switch (language) {
-      case 'en': return 'us';
-      case 'ja': return 'jp';
-      case 'zh': return 'cn';
-      case 'ko': return 'kr';
-      case 'cs': return 'cz';
-      default: return language;
-    }
-  }
+  console.log(mediaSearchResults.results)
 
   return (
     <main>
@@ -50,14 +39,11 @@ export default function HomePage() {
         </form>
         <div className="section">
           {
-            mediaSearchResults.results.map(({id, name, original_language, original_name, title, original_title, vote_average, poster_path}) => (
-              <ul key={id} className="list-unstyled">
-                <li><img src={poster_path !== null ? `https://image.tmdb.org/t/p/w500/${poster_path}` : imgPlaceholder} alt={title} /></li>
-                <li>{title || name}</li>
-                <li>{original_title || original_name}</li>
-                <li><span className={`fi fi-${handleCoutryCode(original_language)}`}></span></li>
-                <li>{vote_average}</li>
-              </ul>
+            mediaSearchResults.results.map(element => (
+              <AppCards 
+              key={element.id} 
+              element={element} 
+              />
             ))
           }
         </div>
