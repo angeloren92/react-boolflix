@@ -1,3 +1,5 @@
+import AppCardCast from "./AppCardCast";
+
 const imgPlaceholder = 'https://placehold.co/500x700?text='
 
 export default function AppCards({ element }) {
@@ -10,7 +12,9 @@ export default function AppCards({ element }) {
     original_title,
     vote_average,
     poster_path,
-    overview
+    overview,
+    media_type,
+    id
   } = element
 
   function handleCoutryCode(language) {
@@ -39,9 +43,10 @@ export default function AppCards({ element }) {
   return (
     <div className="col g-5">
       <figure className="card bg-transparent border-0">
-        <div className="card-body bg-transparent position-relative z-0 text-white p-0 border">
+        <div className="card-body bg-transparent position-relative z-0 text-white p-0 border shadow">
           <div className="card-img h-100">
-            <img className="img-fluid w-100 h-100 position-relative z-1" src={poster_path !== null ? `https://image.tmdb.org/t/p/w342/${poster_path}` : `${imgPlaceholder}${title.toUpperCase()} immagine non trovata`} alt={title} />
+            <img className="img-fluid w-100 h-100 position-relative z-1"
+              src={poster_path !== null ? `https://image.tmdb.org/t/p/w342/${poster_path}` : `${imgPlaceholder}${title.toUpperCase()} immagine non trovata`} alt={title} />
           </div>
           <div className="card-text d-flex position-absolute flex-column z-n1 px-4">
             <h2 className="h4"><strong>Titolo: </strong>{title || name}</h2>
@@ -49,8 +54,9 @@ export default function AppCards({ element }) {
             <span><strong>Lingua: </strong>
               <span className={`fi fi-${handleCoutryCode(original_language)}`}></span>
             </span>
-            <span>Valutazione: {handleVoteAvarage(vote_average)}</span>
+            <span><strong>Valutazione: </strong>{handleVoteAvarage(vote_average)}</span>
             <p className="mt-2"><strong>Overview:</strong> {overview}</p>
+            <AppCardCast id={id} media_type={media_type}/>
           </div>
 
         </div>

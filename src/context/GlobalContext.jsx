@@ -33,7 +33,9 @@ export function GlobalContextProvider({ children }) {
                 searchMediaType,
                 setSearchMediaType,
                 handleSearch,
-                mediaSearchResults
+                mediaSearchResults,
+                apiUrl,
+                envKey
             }}
         >
             {children}
