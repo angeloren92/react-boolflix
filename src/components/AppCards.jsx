@@ -27,10 +27,10 @@ const {
     const vote = Math.ceil(vote_average / 2)
     const markup = []
     for (let i = 0; i < vote ; i++) {
-      markup.push(<i className="bi bi-star-fill text-warning"></i>)
+      markup.push(<i key={i} className="bi bi-star-fill text-warning"></i>)
     }
     for (let i = vote; i < 5; i++) {
-      markup.push(<i className="bi bi-star-fill text-secondary"></i>)
+      markup.push(<i key={i} className="bi bi-star-fill text-secondary"></i>)
     }
     return markup
   }
