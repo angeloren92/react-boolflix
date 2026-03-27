@@ -23,8 +23,6 @@ export default function HomePage() {
       })
   }
 
-  console.log(mediaSearchResults.results)
-
   return (
     <main>
       <div className="container">

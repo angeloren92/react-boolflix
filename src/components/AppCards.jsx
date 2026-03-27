@@ -12,9 +12,6 @@ const {
   poster_path
 } = element
 
-
-  console.log(name, title, original_language)
-
   function handleCoutryCode(language) {
     switch (language) {
       case 'en': return 'us';
@@ -26,13 +23,25 @@ const {
     }
   }
 
+  function handleVoteAvarage(vote_average) {
+    const vote = Math.round(vote_average / 2)
+    const markup = []
+    for (let i = 0; i < vote ; i++) {
+      markup.push(<i className="bi bi-star-fill text-warning"></i>)
+    }
+    for (let i = vote; i < 5; i++) {
+      markup.push(<i className="bi bi-star-fill text-secondary"></i>)
+    }
+    return markup
+  }
+
   return (
     <ul className="list-unstyled">
       <li><img src={poster_path !== null ? `https://image.tmdb.org/t/p/w500/${poster_path}` : imgPlaceholder} alt={title} /></li>
       <li>{title || name}</li>
       <li>{original_title || original_name}</li>
       <li><span className={`fi fi-${handleCoutryCode(original_language)}`}></span></li>
-      <li>{vote_average}</li>
+      <li>{handleVoteAvarage(vote_average)}</li>
     </ul>
   )
 }
