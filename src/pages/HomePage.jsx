@@ -47,8 +47,9 @@ export default function HomePage() {
         </form>
         <div className="section">
           {
-            mediaSearchResults.results.map(({id, name, original_language, original_name, title, original_title, vote_average}) => (
+            mediaSearchResults.results.map(({id, name, original_language, original_name, title, original_title, vote_average, poster_path}) => (
               <ul key={id} className="list-unstyled">
+                <li><img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt="" /></li>
                 <li>{title || name}</li>
                 <li>{original_title || original_name}</li>
                 <li><span className={`fi fi-${handleCoutryCode(original_language)}`}></span></li>
