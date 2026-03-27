@@ -14,8 +14,10 @@ export default function AppCardCast({ id, media_type, genre_ids }) {
         fetch(`${apiUrl}3/${media_type}/${id}/credits?api_key=${envKey}`)
             .then(response => response.json())
             .then(data => {
-                const filteredCast = data.cast.map(element => element.name)
-                setCast(filteredCast.slice(0, 5))
+                const filteredCast = data.cast.map(element => {
+                    return {'name': element.name, 'idCast': element.id}
+                })
+                setCast(filteredCast.splice(0, 5))
             })
     }, [id])
 
@@ -25,7 +27,7 @@ export default function AppCardCast({ id, media_type, genre_ids }) {
             <ul>
                 {
                     cast.map(element => (
-                        <li>{element}</li>
+                        <li key={element.idCast}>{element.name}</li>
                     ))
                 }
             </ul>
