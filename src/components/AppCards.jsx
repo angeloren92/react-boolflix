@@ -24,7 +24,7 @@ const {
   }
 
   function handleVoteAvarage(vote_average) {
-    const vote = Math.round(vote_average / 2)
+    const vote = Math.ceil(vote_average / 2)
     const markup = []
     for (let i = 0; i < vote ; i++) {
       markup.push(<i className="bi bi-star-fill text-warning"></i>)
