@@ -29,7 +29,7 @@ export default function AppHeader() {
                   <option value="tv">SerieTV</option>
                 </select>
               </div>
-              <button id="submit" className="btn btn-outline-light flex-grow-1" type="submit">CERCA</button>
+              <button id="submit" className="btn btn-outline-light flex-grow-1 my-auto py-2" type="submit">CERCA</button>
             </form>
           </section>
         </div>

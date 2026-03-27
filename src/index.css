@@ -13,6 +13,21 @@
     border-end-start-radius: 0
 }
 
-#submit{
+#submit {
     border: 0;
+}
+
+.card-text {
+    top: 5%;
+    left: 0;
+}
+
+.card-img {
+    transition: opacity 0.5s cubic-bezier(0,0,0.58,1);
+    aspect-ratio: 1/1.4;
+    object-fit: contain;
+}
+
+.card-img:hover {
+    opacity: 0;
 }
