@@ -14,7 +14,8 @@ export default function AppCards({ element }) {
     poster_path,
     overview,
     media_type,
-    id
+    id, 
+    genre_ids
   } = element
 
   function handleCoutryCode(language) {
@@ -56,7 +57,7 @@ export default function AppCards({ element }) {
             </span>
             <span><strong>Valutazione: </strong>{handleVoteAvarage(vote_average)}</span>
             <p className="mt-2"><strong>Overview:</strong> {overview}</p>
-            <AppCardCast id={id} media_type={media_type}/>
+            <AppCardCast id={id} media_type={media_type} genre_ids={genre_ids}/>
           </div>
 
         </div>

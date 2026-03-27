@@ -1,23 +1,24 @@
 import { GlobalContext } from "../context/GlobalContext"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 
-export default function AppCardCast({ id, media_type }) {
+export default function AppCardCast({ id, media_type, genre_ids }) {
 
-    const []
-    console.log(media_type)
+    const [cast, setCast] = useState([])
+
+    console.log(cast)
 
     const { apiUrl, envKey } = useContext(GlobalContext)
 
-    function handleCast(e) {
-        e.preventDefault()
-        fetch(`${apiUrl}3/${id}}/${media_type}?api_key=${envKey}`)
+
+    useEffect(() => {
+        fetch(`${apiUrl}3/${media_type}/${id}/credits?api_key=${envKey}`)
             .then(response => response.json())
             .then(data => {
-                setMediaSearchResults({
-                    'page': data.page
-                })
+                const filteredCast = [data.cast.map(element => element.name)]
+                setCast(filteredCast)
             })
-    }
+    }, [id])
+
 
     return (
         <>
