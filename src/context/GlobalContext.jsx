@@ -1,5 +1,4 @@
-import { createContext, cretateContext } from 'react'
-import { useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 
 export const GlobalContext = createContext()
 
@@ -10,10 +9,11 @@ export function GlobalContextProvider({ children }) {
     const [tempSearchMovieTitle, setTempSearchMovieTitle] = useState('')
     const [searchMediaType, setSearchMediaType] = useState('multi')
     const [mediaSearchResults, setMediaSearchResults] = useState({ page: 1, results: [] })
+    const [genre, setGenre] = useState({movie: [], tv:[]})
 
     function handleSearch(e) {
         e.preventDefault()
-        fetch(`${apiUrl}3/search/${searchMediaType}?api_key=${envKey}&query=${tempSearchMovieTitle}&page=${mediaSearchResults.page}`)
+        fetch(`${apiUrl}3/search/${searchMediaType}?api_key=${envKey}&query=${tempSearchMovieTitle}`)
             .then(response => response.json())
             .then(data => {
                 setMediaSearchResults({
@@ -25,6 +25,19 @@ export function GlobalContextProvider({ children }) {
             })
     }
 
+    useEffect(() => {
+        fetch(`${apiUrl}3/genre/movie/list?api_key=${envKey}`)
+            .then(response => response.json())
+            .then(data => {
+                setGenre(prevGenre => ({...prevGenre, movie: data.genres}))
+            })
+        fetch(`${apiUrl}3/genre/tv/list?api_key=${envKey}`)
+            .then(response => response.json())
+            .then(data => {
+                setGenre(prevGenre => ({...prevGenre, tv: data.genres}))
+            })
+    }, [])
+
     return (
         <GlobalContext.Provider
             value={{
@@ -35,7 +48,8 @@ export function GlobalContextProvider({ children }) {
                 handleSearch,
                 mediaSearchResults,
                 apiUrl,
-                envKey
+                envKey,
+                genre
             }}
         >
             {children}
