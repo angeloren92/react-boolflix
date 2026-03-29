@@ -8,15 +8,17 @@ export function GlobalContextProvider({ children }) {
     const envKey = import.meta.env.VITE_SECRET_KEY
     const [tempSearchMovieTitle, setTempSearchMovieTitle] = useState('')
     const [searchMediaType, setSearchMediaType] = useState('multi')
-    const [mediaSearchResults, setMediaSearchResults] = useState({ page: 1, results: [] })
+    const [mediaSearchResults, setMediaSearchResults] = useState(null)
     const [genre, setGenre] = useState({movie: [], tv:[]})
+    const [filterGenre, setFilterGenre] = useState({ page: 1, results: [] })
 
     function handleSearch(e) {
         e.preventDefault()
         fetch(`${apiUrl}3/search/${searchMediaType}?api_key=${envKey}&query=${tempSearchMovieTitle}`)
             .then(response => response.json())
             .then(data => {
-                setMediaSearchResults({
+                setMediaSearchResults(data)
+                setFilterGenre({
                     'page': data.page,
                     'results': data.results.filter(element => element.media_type !== 'person'),
                     'total_pages': data.total_pages,
@@ -49,7 +51,9 @@ export function GlobalContextProvider({ children }) {
                 mediaSearchResults,
                 apiUrl,
                 envKey,
-                genre
+                genre,
+                filterGenre,
+                setFilterGenre
             }}
         >
             {children}

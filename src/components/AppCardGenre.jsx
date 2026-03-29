@@ -16,8 +16,6 @@ export default function AppCardGenre({ genre_ids, media_type }) {
         })
     }
 
-    console.log(findedGenre)
-
     return(
         <figure>
             <span><strong>Generi Associati :</strong></span>
