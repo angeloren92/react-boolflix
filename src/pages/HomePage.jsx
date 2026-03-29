@@ -13,7 +13,7 @@ export default function HomePage() {
 
         <AppFilterGenre/>
         
-        <section className="row row-cols-1 row-cols-lg-2 row-cols-xl-3 py-3">
+        <section className="row row-cols-1 row-cols-lg-2 row-cols-xl-3 py-1">
           {
             filterMediaGenre.results.map(element => (
               <AppCards

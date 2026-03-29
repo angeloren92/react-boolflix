@@ -14,15 +14,13 @@ export default function AppFilterGenre() {
         }
     }
 
-
     return (
-        <div className="row">
+        <div className="row py-4">
             {
-                filterMediaGenre.results.length === 0 && hide === false && <div className="col col-12"><h1>Nessun Risultato</h1></div>
-            }
-            {
-                hide === false && <div className="col col-12">
-                    <select name="" id="" className="" onChange={(e) => handleSelect(parseInt(e.target.value))}>
+                hide === false && 
+                <div className="col col-12 d-flex justify-content-end">
+                    <select name="genreFilter" id="genreFilter" className="btn btn-outline-light mb-1 text-start" 
+                    onChange={(e) => handleSelect(parseInt(e.target.value))}>
                         <option value={0}>Tutti i Generi</option>
                         {
                             genre.movie.map(element => (
@@ -36,6 +34,9 @@ export default function AppFilterGenre() {
                         }
                     </select>
                 </div>
+            }
+            {
+                filterMediaGenre.results.length === 0 && hide === false && <div className="col col-12"><h1>Nessun Risultato</h1></div>
             }
         </div>
     )

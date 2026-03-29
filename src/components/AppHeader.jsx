@@ -19,7 +19,7 @@ export default function AppHeader() {
             <form action="" className="d-flex flex-wrap gap-2"
               onSubmit={handleSearch}>
               <div className="d-flex flex-nowrap py-2">
-                <input type="text" id="searchTitleInput" placeholder="Cerca Titolo" className="i btn btn-outline-light"
+                <input type="text" id="searchTitleInput" placeholder="Cerca Titolo" className="i btn btn-outline-light text-start"
                   value={tempSearchMovieTitle}
                   onChange={(e) => setTempSearchMovieTitle(e.target.value)} />
                 <select name="mediaType" id="mediaType" className="btn btn-outline-light text-start"
