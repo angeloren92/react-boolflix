@@ -5,7 +5,7 @@ import AppFilterGenre from "../components/AppFilterGenre"
 
 export default function HomePage() {
 
-  const { filterGenre } = useContext(GlobalContext)
+  const { filterMediaGenre } = useContext(GlobalContext)
 
   return (
     <main className="bg-secondary min-vh-100">
@@ -15,7 +15,7 @@ export default function HomePage() {
         
         <section className="row row-cols-1 row-cols-lg-2 row-cols-xl-3 py-3">
           {
-            filterGenre.results.map(element => (
+            filterMediaGenre.results.map(element => (
               <AppCards
                 key={element.id}
                 element={element}
